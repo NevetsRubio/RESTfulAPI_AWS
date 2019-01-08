@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Project One</title>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css.map" rel="alt">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css.map" rel="alt">
+    <link rel="icon" href="img/MyBoy.png" type="image/png" sizes="16x16">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        Body {
+            margin-top: 20px;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        var API_URL = ""
+        var modal = document.getElementById('mdl_EditRecord');
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: API_URL,
+                success: function (data) {
+                    $('#Student_Data').html('');
+
+                    if (data.Count == 0) {
+
+                    } else {
+                        $.each(data.Items, function (index, studentItem, x) {
+                            $('#Student_Data').append(
+                                '<tr>' +
+                                '<td>' + studentItem.studentid + '</td>' +
+                                '<td>' + studentItem.firstname + '</td>' +
+                                '<td>' + studentItem.lastname + '</td>' +
+                                '<td>' + studentItem.gpa + '</td>' +
+                                '<td>' + studentItem.graduationdate + '</td>' +
+                                '<td>' +
+                                '<input type="button" class="btn btn-primary stud-btn" value="Update"> </input>' +
+                                '<input type="button" class="btn btn-danger stud-btn" value="Delete"> </input>' +
+                                '</td>' +
+                                '</tr>');
+                        });
+                    };
+                }
+            });
+        });
+
+        function AddStudent() {
+            $.ajax({
+                type: 'POST',
+                url: API_URL,
+                data: JSON.stringify({
+                    "studentid": parseInt($('#studentid').val()),
+                    "firstname": $('#firstname').val(),
+                    "lastname": $('#lastname').val(),
+                    "gpa": $('#gpa').val(),
+                    "graduationdate": $('#graduationdate').val()
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    location.reload();
+                }
+            });
+            return false;
+        };
+
+        $(document).on('click', '.stud-btn', function (event) {
+            event.preventDefault();
+            var tr = this.closest('tr');
+
+            if ($(this).val() == "Delete") {
+                var id = tr.cells[0].innerHTML;
+                $.ajax({
+                    type: 'DELETE',
+                    url: API_URL,
+                    data: JSON.stringify({
+                        "studentid": parseInt(id)
+                    }),
+                    contentType: "application/json",
+                    success: function (data) {
+                        location.reload();
+                    }
+                });
+            } else {
+                $('#mdl_EditRecord')[0].style.display = "block";
+
+                $('#update_studentid')[0].value = tr.cells[0].innerHTML;
+                $('#update_firstname')[0].value = tr.cells[1].innerHTML;
+                $('#update_lastname')[0].value = tr.cells[2].innerHTML;
+                $('#update_gpa')[0].value = tr.cells[3].innerHTML;
+                $('#update_graduationdate')[0].value = tr.cells[4].innerHTML;
+            };
+
+            return false;
+        });
+
+        function UpdateStudent() {
+            var id = document.getElementById('update_studentid').value;
+            var g = $('#update_gpa').val();
+            $.ajax({
+                type: 'PUT',
+                url: API_URL,
+                data: JSON.stringify({
+                    "studentid": parseInt(id),
+                    "firstname": $('#update_firstname').val(),
+                    "lastname": $('#update_lastname').val(),
+                    "gpa": g,
+                    "graduationdate": $('#update_graduationdate').val()
+                }),
+                contentType: "application/json",
+                success: function (data) {
+                    location.reload();
+                }
+            });
+            $('#mdl_EditRecord')[0] = "none";
+            return false;
+        };
+
+        $(document).on('click', '.close_EditView', function () {
+            $('#mdl_EditRecord')[0].style.display = "none";
+        });
+    </script>
+</head>
+
+<body background="img/e178d6ef5bc3e8053f6974eb239acfdd.jpg">
+    <div class="container">
+        <!--Row for Project Panel-->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center">
+                        <h1><u>The Actual Project</u></h1>
+                    </div>
+                    <div class="panel-body">
+                        <form class="">
+                            <legend>Enter Student Information</legend>
+                            <fieldset>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label>Student ID:</label><input id="studentid" class="form-control disabled"
+                                            type="text" placeholder="Enter Student ID">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>First Name:</label><input id="firstname" class="form-control" type="text"
+                                            placeholder="Enter First Name">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label>Last Name:</label><input id="lastname" class="form-control" type="text"
+                                            placeholder="Enter Last Name">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>GPA:</label><input id="gpa" class="form-control" type="text" placeholder="Enter GPA">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label>Graduation Date:</label><input id="graduationdate" class="form-control"
+                                            type="date" placeholder="Enter Graduation Data">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <input onclick="AddStudent()" class="btn btn-primary btn-lg btn-block" type="button"
+                                            value="Add Student">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Row for table panel-->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center">
+                        <h1><u>Student Recordbook Table</u></h1>
+                    </div>
+                    <div class="panel-body table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>GPA</th>
+                                    <th>Graduation Date</th>
+                                    <th>Settings</th>
+                                </tr>
+                            </thead>
+                            <tbody id="Student_Data">
+                                <tr>
+                                    <td>1</td>
+                                    <td>Steven</td>
+                                    <td>Rubio</td>
+                                    <td>4.0</td>
+                                    <td>12/08/2018</td>
+                                    <td>
+                                        <input type="button" class="btn btn-primary stud-btn" value="Update"> </input>
+                                        <input type="button" class="btn btn-danger stud-btn" value="Delete"> </input>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <!--This is the modal form to UPDATE student records-->
+                <div id="mdl_EditRecord" class="modal">
+                    <div class="modal-content">
+                        <span class="close close_EditView">&times;</span>
+                        <div id="NewRecord_PlaceHolder">
+                            <form class="">
+                                <legend>Edit Student Information</legend>
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label>Student ID:</label><input id="update_studentid" class="form-control disabled"
+                                                type="text" placeholder="Enter Student ID">
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label>First Name:</label><input id="update_firstname" class="form-control"
+                                                type="text" placeholder="Enter First Name">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label>Last Name:</label><input id="update_lastname" class="form-control"
+                                                type="text" placeholder="Enter Last Name">
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                            <label>GPA:</label><input id="update_gpa" class="form-control" type="text"
+                                                placeholder="Enter GPA">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label>Graduation Date:</label><input id="update_graduationdate" class="form-control"
+                                                type="text" placeholder="Enter Graduation Data">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-xs-12 text-right">
+                                            <input onclick="UpdateStudent()" class="btn btn-primary btn-lg" type="button"
+                                                value="Edit Student">
+                                            <input class="btn btn-secondary btn-lg close_EditView" type="button" value="Cancel">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Row for project overview panel-->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center">
+                        <h1><u>About the Project</u></h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-offset-1 col-xs-10">
+                            <div class="panel-body">
+                                <h3>Responsive Web Site</h3>
+                                <p>
+                                    I used an open source front-end-framework, Bootstrap 3.3.7, to do all of the styles
+                                    for this website.
+                                    Bootstrap isn't too difficult, as long as you have an understanding of Cascading
+                                    Style Sheets (CSS).
+                                    One can simply add specific class attributes to html tags and bootstrap will
+                                    magically give a web Site
+                                    beautiful designs.
+                                </p>
+                                <p>
+                                    As for being responsive, the most important class attributes would be that for
+                                    Bootstrap's Grid System.
+                                    A div tag with a container with <code>class="container"</code> should wrap the
+                                    entire content of the page.
+                                    Within that div tag there should be several more div tags with <code>class="row"</code>
+                                    and within that more div tags which would delegate the the size of space allocated
+                                    to the contents of that div.
+                                    For example, <code>class="col-xs-offset-3 col-xs-6"</code> would mean the contents
+                                    of the div would fit into 6 columns.
+                                    However, to avoiding placing the div in the first six columns, taking the left half
+                                    of the row, it is placed in the center
+                                    by skipping the first three columns, which is what <code>col-xs-offset-3</code> is
+                                    doing.
+                                </p>
+                                <p>
+                                    The reason why I chose to talk about the Grid System so much is because using this
+                                    allows the content displayed, <em>on any size of device</em>, to fit to screen
+                                    without losing its structure.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<footer>
+
+</footer>
+
+</html>
