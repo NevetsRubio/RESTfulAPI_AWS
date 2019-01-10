@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Project One</title>
@@ -12,10 +12,12 @@
     <link href="css/bootstrap-theme.css.map" rel="alt">
     <link rel="icon" href="img/MyBoy.png" type="image/png" sizes="16x16">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
     <style>
         Body {
             margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         /* The Modal (background) */
@@ -58,7 +60,7 @@
         }
     </style>
     <script>
-        var API_URL = ""
+        var API_URL = "";
         var modal = document.getElementById('mdl_EditRecord');
         $(document).ready(function () {
             $.ajax({
@@ -82,7 +84,8 @@
                                 '<input type="button" class="btn btn-primary stud-btn" value="Update"> </input>' +
                                 '<input type="button" class="btn btn-danger stud-btn" value="Delete"> </input>' +
                                 '</td>' +
-                                '</tr>');
+                                '</tr>'
+                            );
                         });
                     };
                 }
@@ -168,150 +171,162 @@
 
 <body background="img/e178d6ef5bc3e8053f6974eb239acfdd.jpg">
     <div class="container">
-        <!--Row for Project Panel-->
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-offset-1 col-md-10">
                 <div class="panel panel-primary">
                     <div class="panel-heading text-center">
                         <h1><u>The Actual Project</u></h1>
                     </div>
-                    <div class="panel-body">
-                        <form class="">
-                            <legend>Enter Student Information</legend>
-                            <fieldset>
-                                <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <label>Student ID:</label><input id="studentid" class="form-control disabled"
-                                            type="text" placeholder="Enter Student ID">
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <label>First Name:</label><input id="firstname" class="form-control" type="text"
-                                            placeholder="Enter First Name">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <label>Last Name:</label><input id="lastname" class="form-control" type="text"
-                                            placeholder="Enter Last Name">
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <label>GPA:</label><input id="gpa" class="form-control" type="text" placeholder="Enter GPA">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <label>Graduation Date:</label><input id="graduationdate" class="form-control"
-                                            type="date" placeholder="Enter Graduation Data">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-12">
-                                        <input onclick="AddStudent()" class="btn btn-primary btn-lg btn-block" type="button"
-                                            value="Add Student">
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Row for table panel-->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="panel panel-primary">
-                    <div class="panel-heading text-center">
-                        <h1><u>Student Recordbook Table</u></h1>
-                    </div>
-                    <div class="panel-body table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Student ID</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>GPA</th>
-                                    <th>Graduation Date</th>
-                                    <th>Settings</th>
-                                </tr>
-                            </thead>
-                            <tbody id="Student_Data">
-                                <tr>
-                                    <td>1</td>
-                                    <td>Steven</td>
-                                    <td>Rubio</td>
-                                    <td>4.0</td>
-                                    <td>12/08/2018</td>
-                                    <td>
-                                        <input type="button" class="btn btn-primary stud-btn" value="Update"> </input>
-                                        <input type="button" class="btn btn-danger stud-btn" value="Delete"> </input>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <!--This is the modal form to UPDATE student records-->
-                <div id="mdl_EditRecord" class="modal">
-                    <div class="modal-content">
-                        <span class="close close_EditView">&times;</span>
-                        <div id="NewRecord_PlaceHolder">
-                            <form class="">
-                                <legend>Edit Student Information</legend>
-                                <fieldset>
-                                    <div class="row">
-                                        <div class="form-group col-sm-6">
-                                            <label>Student ID:</label><input id="update_studentid" class="form-control disabled"
-                                                type="text" placeholder="Enter Student ID">
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-10">
+                            <div class="panel-body">
+                                <form class="">
+                                    <legend>Enter Student Information</legend>
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label>Student ID:</label><input id="studentid" class="form-control"
+                                                    type="text" placeholder="Enter Student ID">
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label>First Name:</label><input id="firstname" class="form-control"
+                                                    type="text" placeholder="Enter First Name">
+                                            </div>
                                         </div>
-                                        <div class="form-group col-sm-6">
-                                            <label>First Name:</label><input id="update_firstname" class="form-control"
-                                                type="text" placeholder="Enter First Name">
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label>Last Name:</label><input id="lastname" class="form-control" type="text"
+                                                    placeholder="Enter Last Name">
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label>GPA:</label><input id="gpa" class="form-control" type="text"
+                                                    placeholder="Enter GPA">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-sm-6">
-                                            <label>Last Name:</label><input id="update_lastname" class="form-control"
-                                                type="text" placeholder="Enter Last Name">
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label>Graduation Date:</label><input id="graduationdate" class="form-control"
+                                                    type="date" placeholder="Enter Graduation Data">
+                                            </div>
                                         </div>
-                                        <div class="form-group col-sm-6">
-                                            <label>GPA:</label><input id="update_gpa" class="form-control" type="text"
-                                                placeholder="Enter GPA">
+                                        <div class="row">
+                                            <div class="form-group col-sm-12">
+                                                <input onclick="AddStudent()" class="btn btn-primary btn-lg btn-block"
+                                                    type="button" value="Add Student">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-sm-6">
-                                            <label>Graduation Date:</label><input id="update_graduationdate" class="form-control"
-                                                type="text" placeholder="Enter Graduation Data">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-xs-12 text-right">
-                                            <input onclick="UpdateStudent()" class="btn btn-primary btn-lg" type="button"
-                                                value="Edit Student">
-                                            <input class="btn btn-secondary btn-lg close_EditView" type="button" value="Cancel">
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </form>
+                                    </fieldset>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--Row for project overview panel-->
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-offset-1 col-md-10">
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center">
+                        <h1><u>Student Recordbook Table</u></h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-10">
+                            <div class="panel-body table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Student ID</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>GPA</th>
+                                            <th>Graduation Date</th>
+                                            <th>Settings</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="Student_Data">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Steven</td>
+                                            <td>Rubio</td>
+                                            <td>4.0</td>
+                                            <td>12/08/2018</td>
+                                            <td>
+                                                <input type="button" class="btn btn-primary stud-btn" value="Update">
+                                                </input>
+                                                <input type="button" class="btn btn-danger stud-btn" value="Delete">
+                                                </input>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <div id="mdl_EditRecord" class="modal">
+                    <div class="modal-content">
+                        <span class="close close_EditView">&times;</span>
+                        <div id="NewRecord_PlaceHolder">
+                            <div class="row">
+                                <div class="col-md-offset-1 col-md-10">
+                                    <form class="">
+                                        <legend>Edit Student Information</legend>
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="form-group col-sm-6">
+                                                    <label>Student ID:</label><input id="update_studentid" class="form-control"
+                                                        type="text" readonly>
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label>First Name:</label><input id="update_firstname" class="form-control"
+                                                        type="text" placeholder="Enter First Name">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-sm-6">
+                                                    <label>Last Name:</label><input id="update_lastname" class="form-control"
+                                                        type="text" placeholder="Enter Last Name">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label>GPA:</label><input id="update_gpa" class="form-control" type="text"
+                                                        placeholder="Enter GPA">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-sm-6">
+                                                    <label>Graduation Date:</label><input id="update_graduationdate"
+                                                        class="form-control" type="text" placeholder="Enter Graduation Data">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-xs-12 text-right">
+                                                    <input onclick="UpdateStudent()" class="btn btn-primary btn-lg"
+                                                        type="button" value="Edit Student">
+                                                    <input class="btn btn-secondary btn-lg close_EditView" type="button"
+                                                        value="Cancel">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
                 <div class="panel panel-primary">
                     <div class="panel-heading text-center">
                         <h1><u>About the Project</u></h1>
                     </div>
                     <div class="row">
-                        <div class="col-xs-offset-1 col-xs-10">
+                        <div class="col-md-offset-1 col-md-10">
                             <div class="panel-body">
                                 <h3>Responsive Web Site</h3>
                                 <p>
@@ -349,7 +364,134 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center">
+                        <h1><u>If you want to make your own API</u></h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-10">
+                            <div class="panel-body">
+                                <h3>1. Amazon DynamoDB</h3>
+                                <p>
+                                    Setting up Amazon DynamoDB for this project won't be too difficult for this
+                                    project.
+                                    We just have to make sure that the DB is created for our Lambda functions to do
+                                    what they
+                                    need to. If you want to follow along and make your version exactly the same as
+                                    mine, you
+                                    will have: Table Name = student; Primary Key = studentid (Number).
+                                </p>
+                                <p>
+                                    Once your DB is created the next thing you will need to do is take note of your
+                                    Amazon
+                                    Resource Name (ARN). You could technically write it out yourself because it is
+                                    composed of
+                                    the region that your DB was created, your account id, and your table name. Your ARN
+                                    could
+                                    be found in your overview tab already put together for your. This is important for
+                                    giving
+                                    lambda functions permissions to do things with this specific DynamoDB table.
+                                </p>
+
+                                <h3>2. AWS Identity and Access Management (IAM)</h3>
+                                <h4 class="text-center"><u>Policy</u></h4>
+                                <p>Speaking of permissions, the next step of this project was to create a Role with
+                                    Policies
+                                    that would grant permissions for lambda function to do what we need them to. There
+                                    are a
+                                    lot of variations of policies and roles already made but I made my own so I will
+                                    tell you
+                                    how to make your own as well.You could name your function what ever you'd like.
+                                    Let's just
+                                    say I named mine AWS_Lambda_DynamoDB-Policy with the following Actions.
+                                </p>
+                                <div class="row">
+                                    <div class="col-md-offset-4 col-md-4 text-center">
+                                        <ul class="list-group">
+                                            <li class="list-group-item"><code>"dynamodb:DeleteItem"</code></li>
+                                            <li class="list-group-item"><code>"dynamodb:GetItem"</code></li>
+                                            <li class="list-group-item"><code>"dynamodb:Scan"</code></li>
+                                            <li class="list-group-item"><code>"dynamodb:UpdateItem"</code></li>
+                                            <li class="list-group-item"><code>"dynamodb:PutItem"</code></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <p>The above is a list of the actions that should appear in the JSON. However, there is
+                                    a different editor that can be used if one would prefer it. The reason I put all of
+                                    these actions in one policy is because I didn't want to make several policies to
+                                    go on the same role and we do need all of these. <em>UPDATE: I guess I didn't use
+                                        GetItem but you can see all items with scan. Perhaps I will eventually add a
+                                        button to view individual records with the GetItem.</em>
+                                </p>
+
+                                <h4 class="text-center"><u>Amazon Resource Name</u></h4>
+                                <p>
+                                    Now it is important to remmber about the ARN, which I had mentioned earlier. If one
+                                    would want to specificially say that a lambda function can only work with one table
+                                    and one table only, it is possible by referencing the table with its ARN. That
+                                    being said, it is also possible to explicitly say what ID you want these
+                                    permissions to have access to. The following is what I used.
+                                </p>
+                                <div class="row">
+                                    <div class="col-md-offset-2 col-md-8 text-center">
+                                        <ul class="list-group">
+                                            <li class="list-group-item"><code>"arn:aws:dynamodb:[REGION]:[ACCOUNT_ID]:table/[TableName]"</code></li>
+                                            <li class="list-group-item"><code>"arn:aws:dynamodb:[REGION]:[ACCOUNT_ID]:table/[TableName]/index/[Index]"</code></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <h4 class="text-center"><u>Role</u></h4>
+                                <p>
+                                    After setting up the policy, you can then assign that to a new role. Roles can have
+                                    one or many policies, but we only have the one.
+                                </p>
+
+                                <h3>3. AWS Lambda</h3>
+                                <p>Now that the we have a role set up, we can assign that same role to a couple
+                                    different lambda functions. The way that Lambda is useful is that it can be a place
+                                    where you put server-side code, which coins the term they are known by <strong>Serverless
+                                        Functions</strong>. There is another term used often when mentioning Lambda and
+                                    that is <strong>Microservices</strong>. I think that Lambda is probably one of the
+                                    most useful things provided by AWS. It can be written in C#, Ruby, Python, Java,
+                                    and Node.js. A few of which are in available in multiple versions.
+                                </p>
+                                <h4 class="text-center"><u>Setting Up a Function</u></h4>
+                                <p>
+                                    For this project, I have written all Lambda functions in <strong>Node.js 8.10</strong>.
+                                    I am just going to mention a couple of things that are extremely important when
+                                    using Lambda. First, the Document Client for DynamoDB must be available to perform
+                                    actions like put and scan. This is accomplished within the first couple of lines.
+                                    Second, the handler that your function is using and the handler that the Lambda
+                                    function is expecting to execute must match. When DynamoDB_Write is executed Lambda
+                                    is going to execute a function with the handler 'write' in the file 'index'. Below
+                                    I will put snippets of all the functions I have written for this project.
+                                </p>
+                                <h5 class="text-center">DynamoDB_Scan</h5>
+                                <img src="img/DynamoDB_Scan.PNG" class="img-responsive">
+                                <h5 class="text-center">DynamoDB_Write</h5>
+                                <img src="img/DynamoDB_Write.PNG" class="img-responsive">
+                                <h5 class="text-center">DynamoDB_Update</h5>
+                                <img src="img/DynamoDB_Update.PNG" class="img-responsive">
+                                <h5 class="text-center">DynamoDB_Delete</h5>
+                                <img src="img/DynamoDB_Delete.PNG" class="img-responsive">
+                                <p>
+                                    This code would work if one wanted to make exactly what I am doing. However, one
+                                    could alter this to have the same table with more fields or create a completely
+                                    different table with different fields. It isn't too much of a stretch to do any of
+                                    these things.
+                                </p>
+
+                                <h3>4. Amazon API Gateway</h3>
+                                <p>Paragraph about API Gateway Setup.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 <footer>
 
